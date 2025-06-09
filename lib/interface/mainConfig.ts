@@ -33,9 +33,3 @@ export interface MainConfig {
   resourceRemovalPolicy?: cdk.RemovalPolicy;
   defaultComponentConfig?: ComponentConfig
 }
-
-
-
-
-
-

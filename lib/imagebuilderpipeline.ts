@@ -85,8 +85,8 @@ export class ImagebuilderPipeline extends Construct implements MainConfig {
         encryption: cdk.aws_s3.BucketEncryption.S3_MANAGED
       });
       this.bucket.addToResourcePolicy(new iam.PolicyStatement({
-        actions: ['s3:Get*','s3:Put*','s3:List*'],
-        resources: [`arn:aws:s3:::${this.bucket.bucketName}`,`arn:aws:s3:::${this.bucket.bucketName}/*`],
+        actions: ['s3:Get*', 's3:Put*', 's3:List*'],
+        resources: [`arn:aws:s3:::${this.bucket.bucketName}`, `arn:aws:s3:::${this.bucket.bucketName}/*`],
         principals: [new iam.AccountRootPrincipal()],
       }));
     }
@@ -163,8 +163,8 @@ export class ImagebuilderPipeline extends Construct implements MainConfig {
     if (userConfig['iamEncryption'] === undefined) {
       keyid = undefined
     }
-    else{
-      if (userConfig.iamEncryption){
+    else {
+      if (userConfig.iamEncryption) {
         this.cmk = this.createKMSKey(this.distribution, keyAlias);
         keyid = this.cmk.keyId
       }
@@ -226,13 +226,13 @@ export class ImagebuilderPipeline extends Construct implements MainConfig {
     userConfig: MainConfig,
     attribute: string
   ): imagebuilder.CfnInfrastructureConfiguration {
-    if (userConfig["infrastructure"] === undefined ){
+    if (userConfig["infrastructure"] === undefined) {
       userConfig["infrastructure"] = {}
     }
     const instanceType = userConfig["infrastructure"]["instanceType"]
     const securityGroup = userConfig["infrastructure"]["securityGroups"]
 
-    
+
     try {
       const infraconfig = new imagebuilder.CfnInfrastructureConfiguration(
         this,
@@ -250,11 +250,11 @@ export class ImagebuilderPipeline extends Construct implements MainConfig {
       return infraconfig;
     } catch (error) {
       console.log(error)
-        console.log(error)
-        throw new Error("Error creating infra config");
+      console.log(error)
+      throw new Error("Error creating infra config");
     }
   }
-  
+
   private createDistribution(
     distribution: Distribution[],
     amitag: Tags | undefined,
