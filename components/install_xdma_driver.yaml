@@ -8,6 +8,7 @@ phases:
           action: ExecuteBash
           inputs:
             commands:
+              # TODO: Put updated XDMA device header file on S3, pull down, replace, then perform install
                 - echo "Second"
                 - sudo echo Second >> ~/test.txt
                 - sudo cat ~/test.txt
