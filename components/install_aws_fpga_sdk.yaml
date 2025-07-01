@@ -17,9 +17,15 @@ phases:
           action: ExecuteBash
           inputs:
             commands:
+                - mkdir -p "${HOME}/f2_runtime/"
                 - cd "${HOME}"
                 - git clone https://github.com/aws/aws-fpga.git
                 - cd aws-fpga
-                - source vitis_setup.sh
-                - install_xrt
+                - mv sdk_setup.sh "${HOME}/f2_runtime/"
+                - mv shared "${HOME}/f2_runtime/"
+                - mv sdk/ "${HOME}/f2_runtime/"
+                - cd "${HOME}/f2_runtime/"
+                - source sdk_setup.sh
                 - cd "${HOME}"
+                - rm -rf aws-fpga
+                - TODO: Can I just move the SDK folders anywhere and still perform the install? -> Yes, Steven thinks so.
