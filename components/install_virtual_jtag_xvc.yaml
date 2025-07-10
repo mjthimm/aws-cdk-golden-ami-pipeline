@@ -1,5 +1,8 @@
 name: InstallVirtualJTAGXVC
-description: Installs the Xilinx Virtual Cable feature.
+description: [
+  Installs the Xilinx Virtual Cable driver. This can be used to debug your application at runtime by examining waveforms via the Vivado Hardware Manager.
+  See our guide on Virtual JTAG here: https://awsdocs-fpga-f2.readthedocs-hosted.com/latest/hdk/docs/Virtual-JTAG-XVC.html
+]
 schemaVersion: 1.0
 parameters:
   - customer_device_id:

@@ -1,10 +1,13 @@
-name: InstallF2Utils
-description: Installs various libraries and utilities needed by the F2 platform.
+name: InstallF2RuntimeUtils
+description: [
+  Installs various libraries and utilities needed by the F2 platform at runtime. In particular, numactl
+  is necessary for optimal memory allocation and application speed at runtime.
+]
 schemaVersion: 1.0
 phases:
-    - name: install_f2_utils
+    - name: install_f2_runtime_utils
       steps:
-        - name: InstallF2Utils
+        - name: InstallF2RuntimeUtils
           action: ExecuteBash
           inputs:
             commands:
@@ -83,7 +86,7 @@ phases:
                   if [[ $(cat /etc/os-release) == *"Ubuntu"* ]]; then
                     install_command="sudo apt install -y"
                     utils_to_install=ubuntu_utils_to_install
-                  elif [[ $(cat /etc/os-release) == *"Amazon Linux"* ]]
+                  elif [[ $(cat /etc/os-release) == *"Amazon Linux"* ]]; then
                     install_command="sudo yum install -y"
                     utils_to_install=rhel_utils_to_install
                   fi
