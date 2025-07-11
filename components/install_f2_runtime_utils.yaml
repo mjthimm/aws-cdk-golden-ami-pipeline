@@ -57,7 +57,7 @@ phases:
                     screen
                     tcl-dev
                   )
- 
+
                   rhel_utils_to_install=(
                     cmake
                     epel-release
@@ -83,19 +83,21 @@ phases:
 
                   utils_to_install=""
                   install_command=""
+
                   if [[ $(cat /etc/os-release) == *"Ubuntu"* ]]; then
                     install_command="sudo apt install -y"
-                    utils_to_install=ubuntu_utils_to_install
+                    utils_to_install=("${ubuntu_utils_to_install[@]}")
                   elif [[ $(cat /etc/os-release) == *"Amazon Linux"* ]]; then
                     install_command="sudo yum install -y"
-                    utils_to_install=rhel_utils_to_install
+                    utils_to_install=("${rhel_utils_to_install[@]}")
+                  else
+                    echo "Couldn't find a package list for this distro!"
                   fi
 
-                  for pkg in common_packages_to_install; do
+                  for pkg in "${common_packages_to_install[@]}"; do
                     $install_command $pkg
                   done
-                  
+
                   for util in "${utils_to_install[@]}"; do
                     $install_command $util
                   done
-                  
